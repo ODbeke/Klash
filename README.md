@@ -28,7 +28,7 @@ Waiting for full blockchain consensus on complex AI transactions can degrade use
 * This allows the UI to display a live *Draft Arbiter Ruling* to the challenger within seconds, while the validator nodes are still actively verifying and voting on-chain.
 
 ### 4. Custom Integration via genlayer-js
-The client uses the `genlayer-js` SDK to interface with the Bradbury Testnet (StudioNet). We built custom React hooks (`useWallet`, `useTransaction`, `useContractData`) to manage web3 wallets, watch state changes, and poll consensus stages.
+The client uses the `genlayer-js` SDK to interface with the GenLayer StudioNet. We built custom React hooks (`useWallet`, `useTransaction`, `useContractData`) to manage web3 wallets, watch state changes, and poll consensus stages.
 
 ```mermaid
 graph TD

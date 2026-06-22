@@ -117,7 +117,7 @@ export default function Page() {
     if (!wallet.onChain) {
       pushToast({
         kind: 'info',
-        title: 'Switch to Bradbury Testnet',
+        title: 'Switch to StudioNet',
         body: 'Your wallet is on a different network.',
       });
       return false;

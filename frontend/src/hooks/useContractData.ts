@@ -26,7 +26,7 @@ export interface ContractData {
 function classifyError(e: unknown): string {
   const msg = String(e);
   if (/contract not found|execution reverted|no contract/i.test(msg)) {
-    return 'No contract found at the configured address on Bradbury. The deployment may need repair.';
+    return 'No contract found at the configured address on StudioNet. The deployment may need repair.';
   }
   if (/rate limit|429|too many/i.test(msg)) {
     return 'The network is rate limiting reads. Retrying shortly.';
