@@ -2,7 +2,7 @@
 
 :root {
   /* Academic Terminal Palette */
-  --slate-dark: #090d16;
+  --slate-dark: #03050a;
   --surface: #121824;
   --surface-hover: #1b2334;
   --border: #202b3d;
@@ -325,28 +325,28 @@ textarea {
 /* Interactive Background System */
 .bg-grid-plus {
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 64px 64px, rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 64px 1px, rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 1px 64px, rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px);
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+    radial-gradient(circle at 64px 64px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+    radial-gradient(circle at 64px 1px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+    radial-gradient(circle at 1px 64px, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
   background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
   background-size: 64px 64px, 64px 64px, 64px 64px, 64px 64px, 64px 64px, 64px 64px;
 }
 
 .ambient-glow {
   background-image:
-    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(20, 184, 166, 0.04), transparent 70%),
-    radial-gradient(ellipse 40% 60% at 0% 50%, rgba(245, 158, 11, 0.02), transparent 60%),
-    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(20, 184, 166, 0.02), transparent 60%);
+    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(20, 184, 166, 0.12), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 0% 50%, rgba(245, 158, 11, 0.04), transparent 60%),
+    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(20, 184, 166, 0.04), transparent 60%);
 }
 
 .spotlight-radial {
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(20, 184, 166, 0.06) 0%,
-    rgba(245, 158, 11, 0.02) 25%,
+    rgba(20, 184, 166, 0.16) 0%,
+    rgba(245, 158, 11, 0.05) 25%,
     transparent 55%
   );
 }
