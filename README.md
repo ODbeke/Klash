@@ -4,8 +4,8 @@
 
 Klash is an on-chain debate arena built on GenLayer where ideas clash for logical dominance. Each arena is founded on a specific topic and features a single reigning claim (the **Thesis**) held by its proponent. Challengers formulate a logical refutation (the **Antithesis**), and an AI consensus arbiter judges the two head-to-head. The Thesis only falls and changes hands when the opposing Antithesis is ruled decisively stronger by validator consensus; otherwise, the incumbent Thesis holds. Every succession of ideas is recorded permanently in the topic's **Dialectical Progression Timeline** on-chain.
 
-- Live dApp: https://madbenofficial.github.io/klash/
-- Deployed Contract (Bradbury Testnet): [`0x35dE19f52D209A4D841BA15bbEBefABb5B058C96`](https://explorer-bradbury.genlayer.com/address/0x35dE19f52D209A4D841BA15bbEBefABb5B058C96)
+- Live dApp: https://klash-pied.vercel.app/
+- Deployed Contract (StudioNet): [`0x35dE19f52D209A4D841BA15bbEBefABb5B058C96`](https://explorer-studio.genlayer.com/address/0x35dE19f52D209A4D841BA15bbEBefABb5B058C96)
 
 ---
 
@@ -21,24 +21,38 @@ Subjective evaluation carries a major consensus risk: a naive "who wins?" query 
 1. **Incumbent Advantage Prompting:** The AI arbiter prompt enforces a strict rule: the reigning Thesis stands by default (`DEFEND`) unless the opposing Antithesis is *clearly* and decisively better reasoned. This forces borderline decisions away from the decision boundary and stabilizes consensus.
 2. **Equivalence Principle with Tolerance:** The validator code executes a custom equivalence check via `gl.vm.run_nondet_unsafe`. It demands exact binary consensus on the verdict (`DEFEND` or `OVERTHROW`), but permits a tolerance threshold of up to **30 points** on the subjective margin score, preventing consensus splits due to minor non-deterministic numeric fluctuations.
 
-```
-                          GenLayer Testnet
-+-----------------------------------------------------------------+
-|  Klash (Intelligent Contract)                                   |
-|   storage: arenas (TreeMap, each: dominant thesis + history),   |
-|            arena_ids, ledger, counters                          |
-|   propose_thesis()   -> deterministic write, registers topic    |
-|   clash_thesis()     -> AI consensus write -> DEFEND/OVERTHROW  |
-|   _duel()            -> leader_fn (exec_prompt) + validator_fn  |
-|                         (verdict exact, margin tolerance <= 30) |
-+-----------------------------------------------------------------+
-                          ^ reads (paged, 95s poll)
-                          | writes (genlayer-js)
-+-----------------------------------------------------------------+
-|  Frontend SPA (Next.js, Tailwind-Free Vanilla CSS):             |
-|   Academic Research Terminal design system.                     |
-|   Decodes leader receipts in real-time to show draft rulings.   |
-+-----------------------------------------------------------------+
+```mermaid
+graph TD
+    classDef frontend fill:#121824,stroke:#0d9488,stroke-width:1.5px,color:#f1f5f9;
+    classDef contract fill:#0b0f19,stroke:#d97706,stroke-width:1.5px,color:#f1f5f9;
+    classDef network fill:#1b2334,stroke:#475569,stroke-width:1px,color:#f1f5f9;
+
+    subgraph FrontendApp ["Frontend Application (Vercel)"]
+        UI["UI (Academic Terminal)"]:::frontend
+        GL_JS["genlayer-js Clients"]:::frontend
+    end
+
+    subgraph GenLayer ["GenLayer Network (StudioNet)"]
+        L_NODE["Leader Node"]:::network
+        VAL_NODES["Validator Nodes"]:::network
+        STATE["GenVM State Storage"]:::contract
+    end
+
+    UI -->|1. User refutation / new topic| GL_JS
+    GL_JS -->|2. Writes transaction| L_NODE
+    GL_JS -->|6. Paged state reads| STATE
+    
+    L_NODE -->|3. Proposes block| VAL_NODES
+    
+    subgraph Consensus ["Decentralized Consensus"]
+        L_NODE -.->|Executes leader_fn| LLM_L[("LLM Duel Analysis")]
+        VAL_NODES -.->|Executes validator_fn| LLM_V[("LLM Re-Analysis")]
+        
+        VAL_NODES -->|Verify: Verdict exact & Margin delta <= 30| L_NODE
+    end
+    
+    L_NODE -->|4. Writes to state on consensus| STATE
+    GL_JS -.->|5. Draft ruling peeking| L_NODE
 ```
 
 ---
