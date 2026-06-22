@@ -5,7 +5,7 @@
 Klash is an on-chain debate arena built on GenLayer where ideas clash for logical dominance. Each arena is founded on a specific topic and features a single reigning claim (the **Thesis**) held by its proponent. Challengers formulate a logical refutation (the **Antithesis**), and an AI consensus arbiter judges the two head-to-head. The Thesis only falls and changes hands when the opposing Antithesis is ruled decisively stronger by validator consensus; otherwise, the incumbent Thesis holds. Every succession of ideas is recorded permanently in the topic's **Dialectical Progression Timeline** on-chain.
 
 - Live dApp: https://madbenofficial.github.io/klash/
-- Deployed Contract (Bradbury Testnet): `0x0000000000000000000000000000000000000000` (Placeholder - updated on deployment)
+- Deployed Contract (Bradbury Testnet): [`0x35dE19f52D209A4D841BA15bbEBefABb5B058C96`](https://explorer-bradbury.genlayer.com/address/0x35dE19f52D209A4D841BA15bbEBefABb5B058C96)
 
 ---
 

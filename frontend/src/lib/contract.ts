@@ -1,9 +1,9 @@
 import { createClient } from 'genlayer-js';
 import { testnetBradbury } from 'genlayer-js/chains';
 
-// Klash contract on GenLayer Bradbury Testnet (placeholder address - updated on deployment).
+// Klash contract on GenLayer Bradbury Testnet (account ODbeke).
 export const CONTRACT_ADDRESS =
-  '0x0000000000000000000000000000000000000000' as `0x${string}`;
+  '0x35dE19f52D209A4D841BA15bbEBefABb5B058C96' as `0x${string}`;
 export const DEPLOY_TX = '';
 
 export const EXPLORER = 'https://explorer-bradbury.genlayer.com';
