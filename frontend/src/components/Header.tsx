@@ -191,48 +191,6 @@ export function Header({ wallet, arena }: HeaderProps) {
           </div>
         </div>
       </div>
-      <div className="gradient-rule" />
-
-      {/* Bottom Tier: Live stats */}
-      <div className="shell">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.5rem',
-            flexWrap: 'wrap',
-            padding: '0.6rem 0',
-            color: 'var(--text-muted)',
-            fontSize: '0.8rem',
-          }}
-        >
-          {arena ? (
-            <>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Crown size={13} color="var(--amber-glow)" aria-hidden="true" />
-                Proponent:
-                <span className="mono" style={{ color: 'var(--white-chalk)' }}>
-                  {shortAddr(arena.proponent)}
-                </span>
-              </span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Shield size={13} color="var(--teal-glow)" aria-hidden="true" />
-                {arena.defenses} Defended
-              </span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <BookOpen size={13} aria-hidden="true" />
-                {ordinal(arena.progression_index)} Progression
-              </span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Flame size={13} color="var(--red-accent)" aria-hidden="true" />
-                {arena.progression.length} Overthrown
-              </span>
-            </>
-          ) : (
-            <span>No thesis selected.</span>
-          )}
-        </div>
-      </div>
     </header>
   );
 }
