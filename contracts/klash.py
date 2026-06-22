@@ -20,6 +20,25 @@ def _clean(s, lo: int, hi: int, label: str) -> str:
     return s
 
 
+def _normalize_clash(raw) -> dict:
+    if isinstance(raw, str):
+        first, last = raw.find("{"), raw.rfind("}")
+        if first < 0 or last < 0:
+            raise gl.vm.UserError(f"{ERR_LLM} No JSON object in response")
+        raw = json.loads(raw[first:last + 1])
+    if not isinstance(raw, dict):
+        raise gl.vm.UserError(f"{ERR_LLM} Non-dict verdict: {type(raw)}")
+    verdict = str(raw.get("verdict", "")).strip().upper()
+    if verdict not in ("DEFEND", "OVERTHROW"):
+        raise gl.vm.UserError(f"{ERR_LLM} Bad verdict: {verdict!r}")
+    try:
+        margin = max(0, min(100, int(round(float(str(raw.get("margin", 0)).strip())))))
+    except (ValueError, TypeError):
+        raise gl.vm.UserError(f"{ERR_LLM} Non-numeric margin")
+    note = str(raw.get("note", "")).strip()[:240]
+    return {"verdict": verdict, "margin": margin, "note": note}
+
+
 class Klash(gl.Contract):
     owner: Address
     arenas: TreeMap[str, str]        # id -> JSON arena record (dominant thesis + history)
