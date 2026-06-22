@@ -199,3 +199,39 @@ Respond with ONLY this JSON format:
             return abs(a - b) <= 30
 
         return gl.vm.run_nondet_unsafe(leader_fn, validator_fn)
+
+    # ---------------------------------------------------------------- views
+
+    @gl.public.view
+    def get_arenas(self, start: u256) -> list:
+        out = []
+        n = len(self.arena_ids)
+        idx = n - 1 - int(start)
+        while idx >= 0 and len(out) < PAGE:
+            out.append(json.loads(self.arenas[self.arena_ids[idx]]))
+            idx -= 1
+        return out
+
+    @gl.public.view
+    def get_arena(self, arena_id: str) -> dict:
+        if arena_id not in self.arenas:
+            raise gl.vm.UserError(f"{ERR_EXPECTED} Unknown arena")
+        return json.loads(self.arenas[arena_id])
+
+    @gl.public.view
+    def get_ledger(self, start: u256) -> list:
+        out = []
+        n = len(self.ledger)
+        idx = n - 1 - int(start)
+        while idx >= 0 and len(out) < PAGE:
+            out.append(json.loads(self.ledger[idx]))
+            idx -= 1
+        return out
+
+    @gl.public.view
+    def get_stats(self) -> dict:
+        return {
+            "arenas": len(self.arena_ids),
+            "debates": int(self.total_debates),
+            "overthrows": int(self.total_overthrows),
+        }
