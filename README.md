@@ -23,7 +23,7 @@ Subjective evaluation carries a major consensus risk: a naive "who wins?" query 
 
 ```mermaid
 graph TD
-    classDef frontend fill:#121824,stroke:#0d9488,stroke-width:1.5px,color:#f1f5f9;
+    classDef frontend fill:#121824,stroke:#4f46e5,stroke-width:1.5px,color:#f1f5f9;
     classDef contract fill:#0b0f19,stroke:#d97706,stroke-width:1.5px,color:#f1f5f9;
     classDef network fill:#1b2334,stroke:#475569,stroke-width:1px,color:#f1f5f9;
 
@@ -73,8 +73,11 @@ graph TD
 ## Frontend Technology Stack
 
 * **Core:** Next.js 14 (App Router, static export), TypeScript, React.
-* **Styling:** Tailwind-free vanilla CSS design system styled as an **Academic Research Terminal** (Deep slate, muted borders, serif typography, glowing teal and bronze status nodes).
-* **Interactivity:** Framer Motion for spring card transitions, Lucide React icons.
+* **Styling:** Tailwind-free vanilla CSS design system styled as an **Academic Research Terminal** with support for seamless dark/light (parchment) theme toggle, Recoleta & Russo One typography, and premium Indigo & Amber accents.
+* **Interactivity:**
+  * Framer Motion for spring card transitions and theme toggle spin/scale animations.
+  * Lucide React icons.
+  * A mouse-interactive spotlight radial glow background layered over a high-precision grid-plus pattern that dynamically adapts to the selected theme.
 * **Blockchain Connection:** `genlayer-js` client wrapper with built-in poll handlers.
 * **Advanced Integration:** The frontend reads raw transaction progress states and base64-decodes the proposer receipt from the active leader block (`consensus_data.leader_receipt.eq_outputs`). This displays a live *Draft Arbiter Ruling* to users while validators are voting on-chain.
 
