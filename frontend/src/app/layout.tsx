@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { InteractiveBackground } from '@/components/InteractiveBackground';
 
 export const metadata: Metadata = {
   title: 'KLASH — Consensus Dialectic Arena',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <InteractiveBackground />
+        {children}
+      </body>
     </html>
   );
 }
