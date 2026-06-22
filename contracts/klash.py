@@ -95,3 +95,61 @@ class Klash(gl.Contract):
         self.arenas[arena_id] = json.dumps(record)
         self.arena_ids.append(arena_id)
         return arena_id
+
+    @gl.public.write
+    def clash_thesis(self, arena_id: str, contender_claim: str) -> None:
+        if arena_id not in self.arenas:
+            raise gl.vm.UserError(f"{ERR_EXPECTED} Unknown arena")
+        contender_claim = _clean(contender_claim, 10, MAX_CLAIM, "Contender claim")
+        record = json.loads(self.arenas[arena_id])
+        opponent = gl.message.sender_address.as_hex
+
+        verdict = self._duel(record["topic"], record["claim"], contender_claim)
+
+        # Deterministic backstop: overthrow only on a decisive opponent win.
+        overthrown = verdict["verdict"] == "OVERTHROW" and verdict["margin"] >= MIN_MARGIN
+
+        record["clashes"] = int(record["clashes"]) + 1
+        record["last_winner"] = "OPPONENT" if overthrown else "PROPONENT"
+        record["last_margin"] = verdict["margin"]
+        record["last_note"] = verdict["note"]
+        self.total_debates += u256(1)
+
+        if overthrown:
+            progression = list(record.get("progression", []))
+            progression.insert(0, {
+                "proponent": record["proponent"],
+                "claim": record["claim"],
+                "defenses": int(record["defenses"]),
+                "progression_index": int(record["progression_index"]),
+                "toppled_by": opponent,
+                "margin": verdict["margin"],
+            })
+            record["progression"] = progression[:MAX_PROGRESSION]
+            record["proponent"] = opponent
+            record["claim"] = contender_claim
+            record["progression_index"] = int(record["progression_index"]) + 1
+            record["defenses"] = 0
+            self.total_overthrows += u256(1)
+        else:
+            record["defenses"] = int(record["defenses"]) + 1
+
+        self.arenas[arena_id] = json.dumps(record)
+        self._log({
+            "arena": arena_id,
+            "topic": record["topic"],
+            "opponent": opponent,
+            "result": "OVERTHROW" if overthrown else "DEFEND",
+            "margin": verdict["margin"],
+            "note": verdict["note"],
+            "proponent": record["proponent"],
+        })
+
+    def _log(self, event: dict) -> None:
+        self.ledger.append(json.dumps(event))
+        if len(self.ledger) > MAX_LEDGER:
+            tail = [self.ledger[i] for i in range(len(self.ledger) - MAX_LEDGER, len(self.ledger))]
+            while len(self.ledger) > 0:
+                self.ledger.pop()
+            for e in tail:
+                self.ledger.append(e)
