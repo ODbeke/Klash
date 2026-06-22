@@ -68,18 +68,29 @@ export function ThesisCard({ arena, onClash, onPropose, justChanged }: ThesisCar
 
         <div className="fine-rule" />
 
-        <h2
-          className="serif-header"
+        <div
           style={{
-            fontSize: 'clamp(1.5rem, 4vw, 2.4rem)',
-            lineHeight: 1.25,
-            color: 'var(--white-chalk)',
-            fontWeight: 500,
-            textShadow: '0 2px 8px rgba(0,0,0,0.2)',
+            padding: '2rem',
+            background: 'var(--slate-dark)',
+            border: '1px solid var(--border)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--teal-accent)',
+            boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.01)',
+            margin: '0.5rem 0 1rem 0',
           }}
         >
-          {arena.claim}
-        </h2>
+          <h2
+            className="serif-header"
+            style={{
+              fontSize: 'clamp(1.3rem, 3.5vw, 1.95rem)',
+              lineHeight: 1.35,
+              color: 'var(--white-chalk)',
+              fontWeight: 550,
+            }}
+          >
+            {arena.claim}
+          </h2>
+        </div>
 
         <div
           style={{

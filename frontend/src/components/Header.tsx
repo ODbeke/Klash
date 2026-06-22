@@ -167,28 +167,28 @@ export function Header({ wallet, arena }: HeaderProps) {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '1.25rem 0 1rem',
-            gap: '1rem',
+            gap: '1.5rem',
             flexWrap: 'wrap',
           }}
         >
-          <span className="badge badge-teal" style={{ textTransform: 'uppercase' }}>
-            <BookOpen size={12} />
-            Dialectical Arena
-          </span>
-          <div style={{ flex: '1 1 auto', textAlign: 'center', minWidth: 200 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <h1
               className="serif-header"
               style={{
-                fontSize: 'clamp(1.8rem, 5vw, 2.7rem)',
-                letterSpacing: '0.22em',
-                textIndent: '0.22em',
+                fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
+                letterSpacing: '0.15em',
+                textIndent: '0.15em',
                 lineHeight: 1,
                 color: 'var(--white-chalk)',
-                fontWeight: 600,
+                fontWeight: 700,
               }}
             >
               KLASH
             </h1>
+            <span className="badge badge-teal" style={{ textTransform: 'uppercase' }}>
+              <BookOpen size={12} />
+              Dialectical Arena
+            </span>
           </div>
           <div style={{ flexShrink: 0 }}>
             <WalletChip wallet={wallet} />
