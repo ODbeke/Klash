@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&display=swap');
+
+@font-face {
+  font-family: 'Sorgath';
+  src: url('/fonts/Sorgath.woff2') format('woff2'),
+       url('/fonts/Sorgath.woff') format('woff'),
+       url('/fonts/Sorgath.ttf') format('truetype'),
+       url('/fonts/Sorgath.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   /* Academic Terminal Palette - Parchment Light Mode */

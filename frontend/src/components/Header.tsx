@@ -171,24 +171,20 @@ export function Header({ wallet, arena }: HeaderProps) {
             flexWrap: 'wrap',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <h1
-              className="serif-header"
               style={{
-                fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
-                letterSpacing: '0.15em',
-                textIndent: '0.15em',
+                fontFamily: '"Sorgath", "UnifrakturMaguntia", "Pirata One", serif',
+                fontSize: 'clamp(2rem, 5vw, 2.75rem)',
+                letterSpacing: '0.04em',
+                textIndent: '0.04em',
                 lineHeight: 1,
                 color: 'var(--white-chalk)',
-                fontWeight: 700,
+                fontWeight: 'normal',
               }}
             >
               KLASH
             </h1>
-            <span className="badge badge-teal" style={{ textTransform: 'uppercase' }}>
-              <BookOpen size={12} />
-              Dialectical Arena
-            </span>
           </div>
           <div style={{ flexShrink: 0 }}>
             <WalletChip wallet={wallet} />

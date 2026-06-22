@@ -36,52 +36,30 @@ export function Footer() {
       <div className="shell" style={{ display: 'grid', gap: '2rem' }}>
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'start',
-            gap: '2rem',
-            flexWrap: 'wrap',
+            textAlign: 'center',
+            margin: '0 auto',
+            maxWidth: 680,
+            display: 'grid',
+            gap: '0.75rem',
           }}
         >
-          <div>
-            <h4
-              className="serif-header"
-              style={{
-                color: 'var(--white-chalk)',
-                fontSize: '1rem',
-                letterSpacing: '0.05em',
-                marginBottom: '0.5rem',
-              }}
-            >
-              KLASH Dialectic Coliseum
-            </h4>
-            <p style={{ maxWidth: 360, lineHeight: 1.5 }}>
-              A decentralized, validator-consensus debate arena running on GenLayer. 
-              The reigning thesis stands until logically overthrown by a stronger opposing claim.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gap: '0.6rem' }}>
-            <span className="uppercase-label">Resources</span>
-            <a
-              href={FAUCET}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', gap: 4 }}
-              className="btn-secondary-link"
-            >
-              Testnet Faucet <ExternalLink size={12} />
-            </a>
-            <a
-              href={DOCS}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', gap: 4 }}
-              className="btn-secondary-link"
-            >
-              Developer Docs <ExternalLink size={12} />
-            </a>
-          </div>
+          <h4
+            className="serif-header"
+            style={{
+              color: 'var(--white-chalk)',
+              fontSize: '1.25rem',
+              letterSpacing: '0.08em',
+              marginBottom: '0.25rem',
+            }}
+          >
+            KLASH Dialectic Coliseum
+          </h4>
+          <p style={{ lineHeight: 1.6, color: 'var(--text-muted)', fontSize: '0.86rem' }}>
+            KLASH Dialectic Coliseum is a decentralized debate terminal built on GenLayer, governed by intelligent validator consensus. 
+            Here, ideas are treated as assets: any proponent can establish a Thesis, and any challenger can duel it by presenting an Antithesis. 
+            The reigning thesis holds power until logically overthrown by the consensus verdict of an AI validator jury. 
+            Designed for rigorous intellectual duel, mathematical objectivity, and perpetual dialectical progression.
+          </p>
         </div>
 
         <div className="fine-rule" />
@@ -89,9 +67,9 @@ export function Footer() {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
-            gap: '1rem',
+            gap: '2.5rem',
             flexWrap: 'wrap',
           }}
         >
