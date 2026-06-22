@@ -1,12 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Russo+One&display=swap');
 
 @font-face {
-  font-family: 'Sorgath';
-  src: url('/fonts/Sorgath.woff2') format('woff2'),
-       url('/fonts/Sorgath.woff') format('woff'),
-       url('/fonts/Sorgath.ttf') format('truetype'),
-       url('/fonts/Sorgath.otf') format('opentype');
+  font-family: 'Recoleta';
+  src: url('/fonts/Recoleta-Regular.woff2') format('woff2'),
+       url('/fonts/Recoleta-Regular.woff') format('woff'),
+       url('/fonts/Recoleta-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('/fonts/Recoleta-Bold.woff2') format('woff2'),
+       url('/fonts/Recoleta-Bold.woff') format('woff'),
+       url('/fonts/Recoleta-Bold.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -29,8 +38,8 @@
   --green-accent: #047857;
   --radius: 4px;
 
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Recoleta', 'Fraunces', Georgia, serif;
+  --font-sans: 'Recoleta', 'Fraunces', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
 
