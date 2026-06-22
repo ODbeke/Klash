@@ -9,17 +9,26 @@ Klash is an on-chain debate arena built on GenLayer where ideas clash for logica
 
 ---
 
-## Why GenLayer
+## Why GenLayer & Stack Integration
 
-Determining which of two competing arguments is logically superior is a subjective, language-level judgment. Traditionally, subjective arbitration on-chain has relied on expensive, slow crowdsourced oracle tribunals or centralized APIs prone to manipulation and prompt injections. 
+KLASH is designed to push the boundaries of what is possible on-chain by integrating directly with GenLayer's unique intelligent contract capabilities. Determining which of two competing arguments is logically superior is a subjective, language-level judgment. Traditionally, this required centralized APIs or slow, crowdsourced oracle tribunals. KLASH brings subjective natural language arbitration directly into the core consensus loop.
 
-Klash places subjective natural language evaluation under **decentralized validator consensus** in real-time. 
+### 1. Intelligent Validator Consensus (GenVM)
+At the heart of the system is a Python-based contract compiled for the **GenVM** environment. Rather than utilizing external web2 oracles, the contract executes natural language prompt duels natively inside validator nodes. When `clash_thesis` is invoked, GenLayer's leader node prompts its internal LLM to perform a deep semantic analysis between the incumbent thesis and the contender claim.
 
-### Consensus Architecture & Stability
-Subjective evaluation carries a major consensus risk: a naive "who wins?" query makes validators disagree on borderline decisions (near-ties), preventing transactions from settling. Klash mitigates this using two key layers:
+### 2. Multi-Agent Equivalence with Tolerance
+Subjective language evaluation carries a high consensus risk: minor non-deterministic outputs from different LLM models can lead to consensus splits. KLASH solves this using a two-tier stabilization architecture:
+* **Incumbent Advantage Prompting:** The arbiter prompt enforces a rule where the incumbent Thesis stands by default (`DEFEND`) unless the Antithesis is decisively stronger. This moves borderline decisions away from the decision boundary.
+* **Equivalence-With-Tolerance Check:** The contract code leverages `gl.vm.run_nondet_unsafe` to collect LLM verdicts. The consensus logic demands an exact binary match on the categorical verdict (`DEFEND` vs `OVERTHROW`) but allows a numeric tolerance threshold of up to **30 points** on the subjective strength margin. This prevents minor numeric differences from splitting the validator consensus.
 
-1. **Incumbent Advantage Prompting:** The AI arbiter prompt enforces a strict rule: the reigning Thesis stands by default (`DEFEND`) unless the opposing Antithesis is *clearly* and decisively better reasoned. This forces borderline decisions away from the decision boundary and stabilizes consensus.
-2. **Equivalence Principle with Tolerance:** The validator code executes a custom equivalence check via `gl.vm.run_nondet_unsafe`. It demands exact binary consensus on the verdict (`DEFEND` or `OVERTHROW`), but permits a tolerance threshold of up to **30 points** on the subjective margin score, preventing consensus splits due to minor non-deterministic numeric fluctuations.
+### 3. Pre-Consensus UX (Leader Receipt Peeking)
+Waiting for full blockchain consensus on complex AI transactions can degrade user experience. KLASH bypasses this by implementing a **Leader Node Receipt Peeking** mechanism in the frontend:
+* The dApp polls the leader node for the transaction progress in real-time.
+* It base64-decodes the leader's execution receipt (`eq_outputs`) as soon as the leader finishes its run.
+* This allows the UI to display a live *Draft Arbiter Ruling* to the challenger within seconds, while the validator nodes are still actively verifying and voting on-chain.
+
+### 4. Custom Integration via genlayer-js
+The client uses the `genlayer-js` SDK to interface with the Bradbury Testnet (StudioNet). We built custom React hooks (`useWallet`, `useTransaction`, `useContractData`) to manage web3 wallets, watch state changes, and poll consensus stages.
 
 ```mermaid
 graph TD
