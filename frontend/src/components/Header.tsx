@@ -174,10 +174,10 @@ export function Header({ wallet, arena }: HeaderProps) {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <h1
               style={{
-                fontFamily: '"Sorgath", "UnifrakturMaguntia", "Pirata One", serif',
-                fontSize: 'clamp(2rem, 5vw, 2.75rem)',
-                letterSpacing: '0.04em',
-                textIndent: '0.04em',
+                fontFamily: '"Russo One", sans-serif',
+                fontSize: 'clamp(1.8rem, 4.5vw, 2.4rem)',
+                letterSpacing: '0.08em',
+                textIndent: '0.08em',
                 lineHeight: 1,
                 color: 'var(--white-chalk)',
                 fontWeight: 'normal',
