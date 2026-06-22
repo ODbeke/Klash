@@ -19,6 +19,8 @@ import {
   BookOpen,
   Loader2,
   ScrollText,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 export type { LucideIcon };
@@ -43,4 +45,6 @@ export {
   BookOpen,
   Loader2,
   ScrollText,
+  Sun,
+  Moon,
 };

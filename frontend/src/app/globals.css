@@ -30,17 +30,43 @@
   --white-chalk: #1e2530;
   --text-muted: #4a555e;
   --text-faint: #788591;
-  --teal-accent: #0f766e;
-  --teal-glow: #0d9488;
+  --teal-accent: #4f46e5; /* Premium Indigo */
+  --teal-glow: #6366f1;
   --amber-accent: #b45309;
   --amber-glow: #d97706;
   --red-accent: #be123c;
   --green-accent: #047857;
   --radius: 4px;
 
+  /* Glow colors */
+  --glow-primary: rgba(217, 119, 6, 0.06);
+  --glow-secondary: rgba(79, 70, 229, 0.03);
+
   --font-serif: 'Recoleta', 'Fraunces', Georgia, serif;
   --font-sans: 'Recoleta', 'Fraunces', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
+}
+
+:root[data-theme='dark'] {
+  /* Academic Terminal Palette - Dark Mode */
+  --slate-dark: #03050a;
+  --surface: #121824;
+  --surface-hover: #1b2334;
+  --border: #202b3d;
+  --border-strong: #334155;
+  --white-chalk: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --teal-accent: #6366f1; /* Premium Indigo */
+  --teal-glow: #818cf8;
+  --amber-accent: #f59e0b;
+  --amber-glow: #fbbf24;
+  --red-accent: #f43f5e;
+  --green-accent: #10b981;
+
+  /* Glow colors */
+  --glow-primary: rgba(99, 102, 241, 0.08);
+  --glow-secondary: rgba(245, 158, 11, 0.03);
 }
 
 * {
@@ -160,29 +186,32 @@ textarea {
   justify-content: center;
   gap: 0.5rem;
   min-height: 40px;
-  padding: 0 1.25rem;
-  border-radius: var(--radius);
+  padding: 0 1.5rem;
+  border-radius: 9999px; /* Rounded off edges */
   font-weight: 500;
   font-size: 0.88rem;
-  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border);
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .btn-primary {
-  background-color: var(--teal-accent);
-  color: var(--slate-dark);
-  border-color: var(--teal-accent);
+  background-image: linear-gradient(135deg, var(--teal-accent) 0%, var(--teal-glow) 50%, var(--teal-accent) 100%);
+  background-size: 200% 100%;
+  background-position: left center;
+  color: #ffffff !important;
+  border-color: transparent;
   font-weight: 600;
+  transition: background-position 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--teal-glow);
-  border-color: var(--teal-glow);
-  box-shadow: 0 0 16px rgba(20, 184, 166, 0.25);
+  background-position: right center;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
 }
 
 .btn-secondary {
@@ -377,18 +406,22 @@ textarea {
   background-position: center;
 }
 
+:root[data-theme='dark'] .bg-grid-plus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M32 27v10M27 32h10' stroke='%23334155' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M0 32h64M32 0v64' stroke='%231e293b' stroke-width='1'/%3E%3C/svg%3E");
+}
+
 .ambient-glow {
   background-image:
-    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(217, 119, 6, 0.06), transparent 70%),
-    radial-gradient(ellipse 40% 60% at 0% 50%, rgba(13, 148, 136, 0.03), transparent 60%),
-    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(217, 119, 6, 0.03), transparent 60%);
+    radial-gradient(ellipse 60% 40% at 50% -10%, var(--glow-primary), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 0% 50%, var(--glow-secondary), transparent 60%),
+    radial-gradient(ellipse 40% 60% at 100% 50%, var(--glow-primary), transparent 60%);
 }
 
 .spotlight-radial {
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(217, 119, 6, 0.08) 0%,
-    rgba(13, 148, 136, 0.02) 30%,
+    var(--glow-primary) 0%,
+    var(--glow-secondary) 30%,
     transparent 60%
   );
 }

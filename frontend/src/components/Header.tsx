@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { Check, ChevronDown, Copy, Crown, Flame, Shield, Wallet, BookOpen } from './icons';
+import { Check, ChevronDown, Copy, Crown, Flame, Shield, Wallet, BookOpen, Sun, Moon } from './icons';
 import { WalletState } from '@/hooks/useWallet';
 import { Arena } from '@/lib/contract';
 import { copyText, ordinal, shortAddr } from '@/lib/format';
@@ -150,6 +150,27 @@ function WalletChip({ wallet }: { wallet: WalletState }) {
 }
 
 export function Header({ wallet, arena }: HeaderProps) {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme);
+  };
+
   return (
     <header
       style={{
@@ -186,7 +207,38 @@ export function Header({ wallet, arena }: HeaderProps) {
               KLASH
             </h1>
           </div>
-          <div style={{ flexShrink: 0 }}>
+          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <button
+              onClick={toggleTheme}
+              className="btn btn-secondary"
+              aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+              style={{
+                width: 40,
+                height: 40,
+                padding: 0,
+                borderRadius: '50%',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}
+            >
+              <motion.div
+                key={mounted ? theme : 'initial'}
+                initial={{ rotate: -30, scale: 0.8, opacity: 0 }}
+                animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                style={{ display: 'inline-flex' }}
+              >
+                {!mounted ? (
+                  <div style={{ width: 18, height: 18 }} />
+                ) : theme === 'light' ? (
+                  <Moon size={18} />
+                ) : (
+                  <Sun size={18} />
+                )}
+              </motion.div>
+            </button>
             <WalletChip wallet={wallet} />
           </div>
         </div>
