@@ -128,7 +128,7 @@ function WalletChip({ wallet }: { wallet: WalletState }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem' }}>
               <span style={{ color: 'var(--text-muted)' }}>Network</span>
               <span style={{ color: wallet.onChain ? 'var(--green-accent)' : 'var(--amber-accent)', fontWeight: 600 }}>
-                {wallet.onChain ? 'Bradbury' : 'Wrong Network'}
+                {wallet.onChain ? 'StudioNet' : 'Wrong Network'}
               </span>
             </div>
             <div className="fine-rule" />

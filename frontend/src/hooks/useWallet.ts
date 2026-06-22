@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-const BRADBURY_PARAMS = {
-  chainId: '0x107D', // 4221
-  chainName: 'GenLayer Bradbury Testnet',
+const STUDIONET_PARAMS = {
+  chainId: '0xF22F', // 61999
+  chainName: 'GenLayer StudioNet',
   nativeCurrency: { name: 'GEN', symbol: 'GEN', decimals: 18 },
-  rpcUrls: ['https://rpc-bradbury.genlayer.com'],
-  blockExplorerUrls: ['https://explorer-bradbury.genlayer.com/'],
+  rpcUrls: ['https://studio.genlayer.com/api'],
+  blockExplorerUrls: ['https://explorer-studio.genlayer.com/'],
 };
-const BRADBURY_CHAIN_ID = '0x107d';
+const STUDIONET_CHAIN_ID = '0xf22f';
 
 type Eth = {
   request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
@@ -101,7 +101,7 @@ export function useWallet(): WalletState {
       try {
         await eth.request({
           method: 'wallet_addEthereumChain',
-          params: [BRADBURY_PARAMS],
+          params: [STUDIONET_PARAMS],
         });
       } catch {
         /* chain may already exist */
@@ -109,7 +109,7 @@ export function useWallet(): WalletState {
       try {
         await eth.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: BRADBURY_PARAMS.chainId }],
+          params: [{ chainId: STUDIONET_PARAMS.chainId }],
         });
       } catch {
         /* user may decline switch */
@@ -151,7 +151,7 @@ export function useWallet(): WalletState {
     if (address) refreshBalance();
   }, [address, refreshBalance]);
 
-  const onChain = (chainId ?? '').toLowerCase() === BRADBURY_CHAIN_ID;
+  const onChain = (chainId ?? '').toLowerCase() === STUDIONET_CHAIN_ID;
 
   return {
     address,

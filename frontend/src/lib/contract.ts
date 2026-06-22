@@ -1,19 +1,19 @@
 import { createClient } from 'genlayer-js';
-import { testnetBradbury } from 'genlayer-js/chains';
+import { studionet } from 'genlayer-js/chains';
 
-// Klash contract on GenLayer Bradbury Testnet (account ODbeke).
+// Klash contract on GenLayer StudioNet (account ODbeke).
 export const CONTRACT_ADDRESS =
   '0x35dE19f52D209A4D841BA15bbEBefABb5B058C96' as `0x${string}`;
 export const DEPLOY_TX = '';
 
-export const EXPLORER = 'https://explorer-bradbury.genlayer.com';
+export const EXPLORER = 'https://explorer-studio.genlayer.com';
 export const FAUCET = 'https://testnet-faucet.genlayer.foundation/';
 export const DOCS = 'https://docs.genlayer.com';
 
-export const readClient = createClient({ chain: testnetBradbury });
+export const readClient = createClient({ chain: studionet });
 
 export const makeWalletClient = (account: `0x${string}`) =>
-  createClient({ chain: testnetBradbury, account });
+  createClient({ chain: studionet, account });
 
 export type WalletClient = ReturnType<typeof makeWalletClient>;
 
