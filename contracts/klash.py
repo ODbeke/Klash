@@ -67,3 +67,31 @@ class Klash(gl.Contract):
         self.seq = u256(0)
         self.total_debates = u256(0)
         self.total_overthrows = u256(0)
+
+    # ---------------------------------------------------------------- writes
+
+    @gl.public.write
+    def propose_thesis(self, topic: str, opening_claim: str) -> str:
+        topic = _clean(topic, 4, MAX_TOPIC, "Topic")
+        opening_claim = _clean(opening_claim, 10, MAX_CLAIM, "Opening claim")
+
+        self.seq += u256(1)
+        arena_id = f"A{int(self.seq)}"
+        proponent = gl.message.sender_address.as_hex
+        record = {
+            "id": arena_id,
+            "topic": topic,
+            "proponent": proponent,
+            "claim": opening_claim,
+            "founder": proponent,
+            "progression_index": 1,
+            "defenses": 0,
+            "clashes": 0,
+            "last_winner": "",
+            "last_margin": 0,
+            "last_note": "",
+            "progression": [],
+        }
+        self.arenas[arena_id] = json.dumps(record)
+        self.arena_ids.append(arena_id)
+        return arena_id
