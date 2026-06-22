@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@300..700&family=Fira+Code:wght@400..600&display=swap');
 
 :root {
-  /* Academic Terminal Palette */
-  --slate-dark: #03050a;
-  --surface: #121824;
-  --surface-hover: #1b2334;
-  --border: #202b3d;
-  --border-strong: #334155;
-  --white-chalk: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
-  --teal-accent: #0d9488;
-  --teal-glow: #14b8a6;
-  --amber-accent: #d97706;
-  --amber-glow: #f59e0b;
-  --red-accent: #e11d48;
-  --green-accent: #10b981;
+  /* Academic Terminal Palette - Parchment Light Mode */
+  --slate-dark: #fbf9f4;
+  --surface: #ffffff;
+  --surface-hover: #fcfbfa;
+  --border: #e8e5db;
+  --border-strong: #d3cebe;
+  --white-chalk: #1e2530;
+  --text-muted: #4a555e;
+  --text-faint: #788591;
+  --teal-accent: #0f766e;
+  --teal-glow: #0d9488;
+  --amber-accent: #b45309;
+  --amber-glow: #d97706;
+  --red-accent: #be123c;
+  --green-accent: #047857;
   --radius: 4px;
 
   --font-serif: 'Lora', Georgia, serif;
@@ -98,7 +98,7 @@ textarea {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -204,7 +204,7 @@ textarea {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border: 1px solid var(--border);
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .badge-teal {
@@ -234,7 +234,7 @@ textarea {
 /* Input Fields */
 .input-field {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--white-chalk);
@@ -324,30 +324,24 @@ textarea {
 
 /* Interactive Background System */
 .bg-grid-plus {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 64px 64px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 64px 1px, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 1px 64px, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
-  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-  background-size: 64px 64px, 64px 64px, 64px 64px, 64px 64px, 64px 64px, 64px 64px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M32 27v10M27 32h10' stroke='%23c8c3b5' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M0 32h64M32 0v64' stroke='%23e2dfd7' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
+  background-position: center;
 }
 
 .ambient-glow {
   background-image:
-    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(20, 184, 166, 0.12), transparent 70%),
-    radial-gradient(ellipse 40% 60% at 0% 50%, rgba(245, 158, 11, 0.04), transparent 60%),
-    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(20, 184, 166, 0.04), transparent 60%);
+    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(217, 119, 6, 0.06), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 0% 50%, rgba(13, 148, 136, 0.03), transparent 60%),
+    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(217, 119, 6, 0.03), transparent 60%);
 }
 
 .spotlight-radial {
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(20, 184, 166, 0.16) 0%,
-    rgba(245, 158, 11, 0.05) 25%,
-    transparent 55%
+    rgba(217, 119, 6, 0.08) 0%,
+    rgba(13, 148, 136, 0.02) 30%,
+    transparent 60%
   );
 }
 
