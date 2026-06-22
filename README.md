@@ -57,16 +57,33 @@ graph TD
 
 ---
 
-## Contract Methods
+## Intelligent Contract API
 
-| Method | Type | Signature | Description |
-| --- | --- | --- | --- |
-| `propose_thesis` | write | `(topic, opening_claim) -> arena_id` | Deterministically establishes a new debate topic and its opening thesis. |
-| `clash_thesis` | write (AI) | `(arena_id, contender_claim) -> void` | Runs validator-consensus evaluation, resulting in `DEFEND` or `OVERTHROW`. |
-| `get_arenas` | view | `(start) -> list` | Retrieves a page of 20 arenas (newest first). |
-| `get_arena` | view | `(arena_id) -> dict` | Returns details, counters, and the succession progression for a single topic. |
-| `get_ledger` | view | `(start) -> list` | Retrieves a page of paged ledger events. |
-| `get_stats` | view | `() -> { arenas, debates, overthrows }` | Returns global coliseum stats. |
+The **Klash** smart contract exposes two primary transaction types (write methods) to progress state through validator consensus, alongside read-only methods (view methods) to query the coliseum state.
+
+### State-Mutating Transactions (Writes)
+
+* **`propose_thesis(topic: str, opening_claim: str) -> int`**
+  * *Execution:* Deterministic Write Transaction
+  * *Description:* Deterministically establishes a new debate topic, setting the caller as the initial proponent and registering the opening thesis claim.
+* **`clash_thesis(arena_id: int, contender_claim: str)`**
+  * *Execution:* AI Consensus Write Transaction
+  * *Description:* Triggers validator-consensus evaluation between the active thesis and the contender claim, returning either `DEFEND` or `OVERTHROW`.
+
+### Read-Only Queries (Views)
+
+* **`get_stats() -> dict`**
+  * *Returns:* `{ arenas: int, debates: int, overthrows: int }`
+  * *Description:* Returns global coliseum stats across all debate arenas.
+* **`get_arena(arena_id: int) -> dict`**
+  * *Returns:* Details, counters, and the succession progression for a single topic.
+  * *Description:* Queries current state and progression timeline.
+* **`get_arenas(start: int) -> list`**
+  * *Returns:* A page of up to 20 debate arenas (ordered newest first).
+  * *Description:* Queries active debate arenas.
+* **`get_ledger(start: int) -> list`**
+  * *Returns:* A page of paged ledger events.
+  * *Description:* Queries historical event logs of transitions and overthrows.
 
 ---
 
