@@ -39,6 +39,20 @@ def _normalize_clash(raw) -> dict:
     return {"verdict": verdict, "margin": margin, "note": note}
 
 
+def _handle_leader_error(leaders_res, leader_fn) -> bool:
+    leader_msg = getattr(leaders_res, "message", "")
+    try:
+        leader_fn()
+        return False
+    except gl.vm.UserError as e:
+        msg = getattr(e, "message", str(e))
+        if msg.startswith(ERR_EXPECTED):
+            return msg == leader_msg
+        return False
+    except Exception:
+        return False
+
+
 class Klash(gl.Contract):
     owner: Address
     arenas: TreeMap[str, str]        # id -> JSON arena record (dominant thesis + history)
